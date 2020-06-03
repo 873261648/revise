@@ -1,0 +1,33 @@
+[
+  {
+    "title": "var和let、const的区别？",
+    "answer": [
+      "var是ES5语法，存在变量提升",
+      "let不存在变量提升，有块级作用域，不可重复声明",
+      "const声明常量，有块级作用域，不可重复声明"
+    ],
+    "image": [],
+    "userAnswer": ""
+  },
+  {
+    "title": "typeof返回哪些类型",
+    "answer": ["undefined、function、object、Number，Boolean,symbol"],
+    "image": [],
+    "userAnswer": ""
+  },
+  {
+    "title": "列举强制类型转换和隐式类型转换",
+    "answer": [
+      "强制类型转换：parseInt ,parseFloat,toString等",
+      "隐式类型转换：if，逻辑运算，拼接字符串，=="
+    ],
+    "image": [],
+    "userAnswer": ""
+  },
+  {
+    "title": "手写对象深度比较",
+    "answer": "const isEqual = (obj1, obj2) => {\n    // 第一步先判断是不是object\n    if (typeof obj1 !== 'object' || typeof obj2 !== 'object') {\n        return obj1 === obj2;\n    }\n    if (obj1 === obj2) return true\n    // 第二步判断数组长度或key的个数是否一致\n    let obj1Keys = Object.keys(obj1);\n    let obj2Keys = Object.keys(obj2);\n    if (obj1Keys.length !== obj2Keys.length) {\n        return false\n    }\n    // 第三步循环递归检查\n    for (const key in obj1) {\n        let res = isEqual(obj1[key], obj2[key])\n        if (!res) return false\n    }\n    return true\n}",
+    "image": [],
+    "userAnswer": ""
+  }
+]
