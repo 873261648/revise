@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/revise/precache-manifest.fe743172dcea58ad3e8d86248879662b.js"
+  "/revise/precache-manifest.04d93235fd8af12c76e68e6de7b39759.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "revise"});
