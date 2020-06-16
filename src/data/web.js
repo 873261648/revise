@@ -102,6 +102,17 @@ Object.prototype.myBind = function () {
         "answer": '根据事件冒泡的原理，在需要监听的元素的祖先元素监听事件，用event.target判断触发事件的元素'
     },
     {
+        "title": "请描述一下原型和原型链",
+        "answer": [
+            'JavaScript是一种简易的脚本语言，其是由对象构成。每一个JavaScript对象（除null外）都和另一个对象相关联，“另一个”对象就是原型。也就是说，任何一个对象都有原型这个属性。',
+            '隐式原型（_proto_）：上面说的这个原型是JavaScript中的内置属性[[prototype]]，此属性继承自object对象，在脚本中没有标准的方式访问[[prototype]]，但Firefox、Safari和Chrome在每个对象上都支持一个属性_proto_。隐式原型的作用是用来构成原型链，实现基于原型的继承',
+            '显示原型（prototype）：每一个函数在创建之后，便会拥有一个prototype属性，这个属性指向函数的原型对象。显示原型的作用是用来实现基于原型的继承与属性的共享'
+        ],
+        answerImg: [
+            'https://wx2.sbimg.cn/2020/06/08/QQ20200608185943.png'
+        ]
+    },
+    {
         "title": "闭包是什么，有什么特性，有什么负面影响？",
         answer: [
             '闭包就是能够读取其他函数内部变量的函数。',
@@ -477,7 +488,153 @@ console.log(params.get('a'))`
             title: "自定义指令-vue官网",
             target: "https://cn.vuejs.org/v2/guide/custom-directive.html"
         }]
-    }
+    },
+    {
+        title: 'Vue性能优化',
+        answer: [
+            '合理使用v-show和v-if',
+            '合理使用异步组件和路由懒加载；',
+            '合理使用computed，因为computed会缓存结果，只有在data发生改变时才重新计算；',
+            '合理使用keep-alive；',
+            'data层数不宜过深，递归次数太多；'
+        ]
+    },
+    {
+        title: 'v-if和v-for同时使用执行顺序',
+        answer: '先for再if，应避免同时使用，可将v-if移动到for的父级容器或在computed中过滤'
+    },
+    {
+        title: '在宽高不确定的情况下使元素垂直居中，写出两种方案',
+        answer: [
+            'flex布局；',
+            '定位；',
+            'Table布局；',
+            'Grid布局；'
+        ]
+    },
+    {
+        title: '浏览器加载dom的过程',
+        answer: [
+            '浏览器根据html生DOM Tree，根据css生成CSSOM；',
+            '将DOM Tree和CSSOM整合成Render Tree；',
+            '根据Render Tree渲染页面；',
+            '如果遇到JS代码，就会停下等待JS代码执行完成之后再继续渲染，因为JS本身可能会改变DOM结构，会造成资源浪费；',
+            '如果遇到资源文件如图片或视频，就给他预留一个位置继续往下渲染，等待加载完成再插入之前的位置即可。'
+        ]
+    },
+    {
+        title: '设计一个响应式模型，兼容移动端',
+        answer: ''
+    },
+    {
+        title: '只用css但是不能用width和height实现一个正方形',
+        answer: '我也不会'
+    },
+    {
+        title: "以下代码的执行顺序和原理",
+        titleImg: [
+            'https://wx1.sbimg.cn/2020/06/08/QQ20200608190646.png'
+        ],
+        answer: ''
+    },
+    {
+        title: "什么是埋点，为什么埋点，怎么设计？",
+        answer: [
+            '获取用户行为以及跟踪产品在用户端的使用情况，并以监控数据为基础，指明产品优化的方向。',
+            '前端监控可以分为三类：数据监控、性能监控和异常监控。',
+            '常见的前端埋点方案分为三种：代码埋点、可视化埋点、无埋点。',
+            '代码埋点：就是以嵌入代码的形式进行埋点，比如需要监控用户的点击事件，会选择在用户点击时，插入一段代码，保存这个监听行为或者直接将监听行为以某一种数据格式直接传递给server端。此外比如需要统计产品的PV和UV的时候，需要在网页的初始化时，发送用户的访问信息等。代码埋点的优点：可以在任意时刻，精确的发送或保存所需要的数据信息。缺点：工作量较大，每一个组件的埋点都需要添加相应的代码。',
+            '可视化埋点:通过可视化交互的手段，代替代码埋点。将业务代码和埋点代码分离，提供一个可视化交互的页面，输入为业务代码，通过这个可视化系统，可以在业务代码中自定义的增加埋点事件等等，最后输出的代码耦合了业务代码和埋点代码。可视化埋点听起来比较高大上，实际上跟代码埋点还是区别不大。也就是用一个系统来实现手动插入代码埋点的过程。缺点：可视化埋点可以埋点的控件有限，不能手动定制。',
+            '无埋点并不是说不需要埋点，而是全部埋点，前端的任意一个事件都被绑定一个标识，所有的事件都别记录下来。通过定期上传记录文件，配合文件解析，解析出来我们想要的数据，并生成可视化报告供专业人员分析因此实现“无埋点”统计。从语言层面实现无埋点也很简单，比如从页面的js代码中，找出dom上被绑定的事件，然后进行全埋点。优点：由于采集的是全量数据，所以产品迭代过程中是不需要关注埋点逻辑的，也不会出现漏埋、误埋等现象。缺点：无埋点采集全量数据，给数据传输和服务器增加压力，无法灵活的定制各个事件所需要上传的数据'
+        ]
+    },
+    {
+        title: "Module，chunk，bundle的区别？",
+        answer: [
+            'Module：源码中的各个文件，css、js、img，webpack中一切皆模块；',
+            'chunk：多个模块合并成的，如enrty，import，splitChunk；',
+            'bundle：最终的输出文件。'
+        ]
+    },
+    {
+        title: "loader和plugin有何区别？请列举常见的loader和plugin。",
+        answer: [
+            'loader是转换器，如scss->css；',
+            'plugin是扩展插件，如htmlWebpackPlugin；',
+            'Babel-loader、css-loader、style-loader、stylus-loader、file-loader、url-loader、postcss-loader。',
+            'DefinePlugin、DllPlugin、DllreferencePlugin、clearWebpackPlugin、htmlWebpackPlugin，Vue-loader-plugin'
+        ]
+    },
+    {
+        title: "如何关闭热更新，热更新原理是什么？",
+        answer: [
+            'devServer.hot改为false；'
+        ]
+    },
+    {
+        title: "前端为什么要进行打包和构建？",
+        answer: [
+            '体积更小（Tree-shaking，压缩，合并），加载更快；',
+            '编译高级语言或语法（TS，ES6+，模块化，scss）；',
+            '兼容性和错误检查（Polyfill，postcss，eslint）；',
+            '统一高效的开发环境；',
+            '统一的构建流程和产出标准；',
+            '集成公司构建规范（提测，上线等）；'
+        ]
+    },
+    {
+        title: "babel-polyfill和babel-runtime的区别？",
+        answer: 'babel-polyfill会污染全局环境，babel-runtime不会，如果是开发第三方插件一定要使用babel-runtime。'
+    },
+    {
+        title: 'Webpack如何实现懒加载？',
+        answer: 'webpack原生兼容懒加载，直接用import()即可'
+    },
+    {
+        title: '为何Proxy不能被Polyfill？',
+        answer: '如Class可以用function模拟，Promise可以用callback模拟，但是Promise的功能用Object.defineProperty无法模拟；'
+    },
+    {
+        title: 'webpack性能优化',
+        answer: [
+            'Babel-loader开启缓存，没有修改过的不用再次编译，includes明确范围',
+            '多进程打包：happyPack，ParallerUgifyPlugin；',
+            '自动刷新；',
+            '热更新；',
+            'DllPlugin动态链接库插件；',
+            '小图片用base64字节码；',
+            'bundle加hash命中缓存；',
+            '懒加载；',
+            '提取公共代码和第三方代码；',
+            'CDN加速（PublicPath）；',
+            'production模式打包，可以压缩代码，vue、React等第三方库会删除调试代码，启动Tree-shaking（ES6 import导入才可以，commonjs导入不可以）；',
+            'Scope-hosting：多个函数合并一个函数，代码体积更小，创建函数作用域更小；'
+        ]
+    },
+    {
+        title: 'ES6 import和commonjs有何不同？',
+        answer: 'import是编译时导入，commonjs是使用时导入，导入的东西有没有用到只有在编译的时候直接明确才能进行tree-shaking；'
+    },
+    {
+        title: '移动端点击事件会有什么问题，如何避免？',
+        answer: '会有移动端300ms延迟和点击穿透的问题。300ms延迟是因为浏览器需要一点时间来判断用户到底是click还是touchmove，使用fastclick库可以解决，原理是使用touchend事件替换click事件。'
+    },
+    {
+        title: "mixins融合规则",
+        answer: [
+            '钩子会按照传入顺序调用，而组件自身的会在执行完之后调用；',
+            'data，methods同名会以组件为主；',
+            '有一些缺点，如变量来源不明，可能会造成命名冲突，可能会出现多对多的情况，复杂度较高；',
+            'Vue3中使用compisition代替；'
+        ]
+    },
+    {
+        title: "this.$attrs和this.$listeners是什么？",
+        answer: [
+            '$attr包含了父组件中不作为props被识别的attributes的绑定，class和style除外，并且可以通过v-bind=’$attrs’传入内部组件；',
+            '$listeners包含了父组件中不含.native的v-on事件监听器。它可以通过v-on=’$listeners’传递给子组件；'
+        ]
+    },
 ]
 
 export default arr
