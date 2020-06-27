@@ -635,6 +635,232 @@ console.log(params.get('a'))`
             '$listeners包含了父组件中不含.native的v-on事件监听器。它可以通过v-on=’$listeners’传递给子组件；'
         ]
     },
+    {
+        title: "请描述event loop机制",
+        answerImg: [
+            'https://wx1.sbimg.cn/2020/06/27/2Rdbd.png'
+        ]
+    },
+    {
+        title: "什么是宏任务和微任务，两者区别是什么？",
+        answer: [
+            '宏任务常见的有setTimeout，setIntrval，ajax，dom事件，requestAnimateFrame；',
+            '微任务：Promise；',
+            '宏任务由w3c规定，微任务由ecma规定；',
+            '微任务在DOM渲染前执行，宏任务在DOM渲染之后执行；'
+        ]
+    },
+    {
+        title: "Promise都有哪些状态？",
+        answer: [
+            'peading、resolved、rejected；',
+            'peading->resolved或peading->rejected，变化不可逆；',
+            'resolve触发then回调，rejected触发catch回调；',
+            'then中报错会触发catch，catch中没有报错会触发then；'
+        ]
+    },
+    {
+        title: "以下代码执行结果？",
+        titleImg: [
+            'https://wx2.sbimg.cn/2020/06/27/2RsJY.png',
+            'https://wx1.sbimg.cn/2020/06/27/2RJiA.png',
+            'https://wx1.sbimg.cn/2020/06/27/2Rj5V.png',
+        ],
+        answer: [
+            '1,3 原因：resolve状态不出发catch回调',
+            '1,2,3 原因：第一个then报错，所以执行第二个catch，执行过程中没有出问题所以状态是resolve，所以执行下一个then',
+            '1,2 原因：第一个then报错，所以执行第二个catch，执行过程中没有出问题所以状态是resolve，所以不会执行catch'
+        ]
+    },
+    {
+        title: "以下代码执行结果？",
+        titleImg: [
+            'https://wx1.sbimg.cn/2020/06/27/2RuR7.png'
+        ],
+        answer: [
+            'a = Promise对象，async函数执行永远返回的都是Promise，因为async会把里面的内容如果不是Promise的话会包装成Promise。',
+            'b = 100，因为await相当于then。'
+        ]
+    },
+    {
+        title: "以下代码执行结果？",
+        titleImg: [
+            'https://wx1.sbimg.cn/2020/06/27/2Rt6e.png'
+        ],
+        answer: [
+            'Start、a100、b200、error 300',
+            '因为Promise,reject抛出了个异常，异常下面的代码都不执行，而且还没有用try...catch去捕获。'
+        ]
+    },
+    {
+        title: "以下代码执行结果？",
+        titleImg: [
+            'https://wx1.sbimg.cn/2020/06/27/2R1W6.png'
+        ],
+        answer: '100，400，300，200。微任务比宏任务先执行'
+    },
+    {
+        title: "以下代码执行结果？",
+        titleImg: [
+            'https://wx1.sbimg.cn/2020/06/27/2RqyO.png'
+        ],
+        answer: [
+            'script start',
+            'async1 start',
+            'Async2',
+            'promise1',
+            'script end',
+            'async1 end',
+            'promise2',
+            'setTimeout'
+        ]
+    },
+    {
+        title: "常见的http状态码有哪些？",
+        answer: [
+            '1xx：服务端接到请求，还没开始返回；',
+            '200：成功；',
+            '3xx：重定向，301永久重定向、302临时重定向、304资源未修改（缓存）；',
+            '4xx：客户端错误，400服务端不能理解客户端的请求、403权限不足、404资源未找到；',
+            '5xx：服务端错误，500服务端错误，504网关超时。'
+        ]
+    },
+    {
+        title: "http常见的headers有哪些？",
+        answer: [
+            'Cache-control：缓存控制；',
+            'Content-Type：数据类型；',
+            'Content-length：数据大小（字节）；',
+            'Host：请求的域名；',
+            'cookie；',
+            'Set-Cookie：服务端设置Cookie；',
+            'Accept：浏览器可接受的数据格式；',
+            'Accept-Encoding：浏览器可接受的加密算法，如gzip',
+            'Accept-Languages：语言，如zh_CN；',
+            ')Connection：keep-alive 建立一次TCP连接后可以重复使用',
+            ')User-Agent：浏览器信息（UA）；',
+            ')Last-Modified：服务端发给客户端的资源最后修改时间；',
+            ')If-Modified-Since：客户端发给服务端的资源的Last-Modified；',
+            ')Etag：服务端发给客户端的资源唯一标识，优先用Etag，因为Last-Modified只能精确到秒，并且可能时间修改但是资源未修改；',
+            ')If-None-Match：客户端发给服务端的Etag；'
+        ]
+    },
+    {
+        title: "什么是Resful API？",
+        answer: [
+            'Resful API是一种新的接口规范，一个api代表一种资源，并且不建议使用url参数，如：/api/list/2；',
+            '使用methods表示操作类型，get获取、post新增、patch局部更新，put替换更新、delete删除'
+        ]
+    },
+    {
+        title: "描述http缓存机制？",
+        answerImg: [
+            'https://wx1.sbimg.cn/2020/06/27/2Rh24.png'
+        ]
+    },
+    {
+        title: "为什么JS中0.1+0.2！==0.3？请解释原因并说出如何避免。",
+        answer: '因为计算机进行计算时会将数字根据IEEE 754标准转换为2进制，而0.1和0.2转换为二进制的时候是无限循环的，而IEEE 754的浮点精度只能有53位，在这里做了一个末尾处四舍五入操作，此时精度已经丢失。避免这种操作可以进行小数点后若干位四舍五入操作。'
+    },
+    {
+        title: '介绍一下什么是深度优先遍历，什么是广度优先遍历，如何实现？',
+        answer: [
+            '深度优先遍历是纵向遍历从上到下一直将一个节点的所有后代全部遍历一遍后在遍历兄弟节点，优点是占用空间小，但是性能不如广度优先;',
+            '广度优先遍历是横向遍历，从左至右将一代遍历完后再进行下一代，占用空间稍微大点，但是性能好；'
+        ],
+        code: `// 深度优先
+function dfs(tree) {
+    let result = [];
+    tree.forEach(item => {
+        if (item.children && item.children.length) {
+            result = result.concat(dfs(item.children))
+        } else {
+            result.push(item.name)
+        }
+    })
+    return result
+}
+
+// 广度优先
+function bfs(tree) {
+    let result = [];
+    let queue = [...tree];
+    while (queue.length > 0) {
+        queue.forEach(item => {
+            result.push(item.name);
+            item.children && queue.push(...item.children)
+            queue.shift()
+        })
+    }
+    return result
+}`
+    },
+    {
+        title: '已知如下数组：[ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10],编写一段程序将数组扁平化去重并以升序排列。',
+        code: `let arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];
+console.log([...new Set(arr.flat(Infinity).sort((a, b) => a - b))]);`
+    },
+    {
+        title: '描述一下异步的发展历程及优缺点',
+        answer: [
+            '异步回调（回调地狱）；',
+            'ES6引入Promise函数（不能被try...catch，链式调用未能解决回调地狱的问题）',
+            'ES6中引入Generator函数（使用起来较复杂不易理解）；',
+            'ES7新增async/await，使异步代码看起来像同步一样，而且可以被try...catch捕获异常；'
+        ]
+    },
+    {
+        title: 'Promise构造函数是同步还是异步代码？then函数呢？',
+        answer: '构造函数是同步代码，then是异步代码'
+    },
+    {
+        title: '什么是http，主要有哪些版本？',
+        answer: [
+            '(1)http（超文本传输协议），是一种基于TCP/IP通信协议的数据传输协议；',
+            '(2)http具有以下特点：',
+            '①灵活，可传输任意类型的数据，只需要通过content-type标记即可；',
+            '②简单快速，客户端发起请求只需要地址和方法即可；',
+            '③无连接，服务端每次连接只能处理一个请求，请求后关闭连接；',
+            '④无状态，对请求处理没有记忆，如果需要之前的数据需要重新传输；',
+            '(3)请求报文由请求行(方法，URL，协议/版本)，请求头，请求体构成，响应报文由状态行，响应头，响应主体构成',
+            '(4)各版本区别：',
+            '①0.9版本：只支持GET请求；没有请求头的概念；所以只能发送html字符串，服务端响应后立即关闭TCP连接；',
+            '②1.0版本：新增POST等方法，新增请求头和响应头的概念，支持多种数据格式',
+            '③1.1版本新增put，patch，delete等方法；新增长连接，通过设置Connection：keep-alive保持连接不断开；新增缓存控制Cache-contral（主流使用）。',
+            '④2.0版本新增二进制分帧，多路复用，请求头压缩，服务端推送，但是由于主流浏览器只支持基于TLS的http2，也就是需要升级为https才行。'
+        ]
+    },
+    {
+        title: 'https有什么作用？与http的区别？http的请求过程以及优缺点？',
+        answer: [
+            '(1)建立安全通道，确认网站的真实性。',
+            '(2)区别：',
+            '(3)https相对于http增加了一层ssl协议；',
+            '(4)https默认端口443，http默认80；',
+            '(5)需要SSL证书（阿里云可以申请DV SSL免费版，不兼容低版本客户端，不支持多域名）；',
+            '(6)优点：',
+            '(7)SEO方面，谷歌明确表示使用https的站点排名更高；',
+            '(8)可以认证用户和服务器，确保数据正确的发送到客户端和服务端；',
+            '(9)https虽然不是绝对安全，但是增加了中间人攻击成本；',
+            '(10)缺点：',
+            '(11)SEO方面，百度表示不会主动爬取https的站点，但是近些年来态度有所改善；',
+            '(12)需要花钱申请证书；',
+            '(13)对服务端劫持，黑客攻击，拒绝服务器攻击几乎起不到作用；',
+            '(14)SSL信用体系不完善，在有些国家可以控制根CA证书的情况下中间人攻击依然可用；',
+            '(15)握手协议比较费时，对速度有些影响；'
+        ]
+    },
+    {
+        title: 'url输入到渲染的过程？',
+        answer: [
+            '(1)DNS解析：DNS解析实际上是一个递归查询的过程，如www.google.com,会依次向本地域名服务器、根域名服务器、.com服务器，google.com服务器查询，查询完成之后保存在本地DNS缓存中。',
+            '(2)建立DNS连接（三次握手）：第一次握手，由客户端发起，说我准备向你发送数据，你准备接收吧。第二次握手，由服务端发送，说我准备好了，你发吧。第三次握手：那我准备发了，你准备好接受。这样做的目的是为了防止已经失效的请求报文发送至服务端导致错误。',
+            '(3)发送http请求：浏览器会检查cache-control是否启用并在有效期，如果在就直接读本地缓存，失效就正常发送http请求。',
+            '(4)服务端响应http请求,处理并返回响应数据：服务端会检查请求头是否带有If-Modified-Since和If-None-Method，如果资源未改变返回304由客户端自己去读缓存，资源改变则返回200、资源、Last-modified、Etag。',
+            '(5)浏览器收到数据开始渲染界面：根据html生成DOMTree，根据css生成CSSOM，通过DOMTree和CSSOM生成render Tree，根据render tree渲染页面，执行过程中如果遇到script就暂停渲染等待script执行结束再继续渲染。',
+            '关闭连接（四次挥手）：第一次挥手由客户端发起，说我请求报文发完了，准备关闭；第二次挥手由服务端发起，说我请求报文接受完了；第三次挥手由服务端发起，说我响应报文发完了，请求关闭连接；第四次挥手由客户端发起，说我响应报文接收完了，我准备关闭，你也关闭吧,服务端收到后立即关闭，客户端一段时间无响应后关闭'
+        ]
+    }
 ]
 
 export default arr
